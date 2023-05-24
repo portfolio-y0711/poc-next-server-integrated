@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:next": "concurrently 'next dev' 'sleep 2; open http://localhost:3000'",
-    "dev:server": "ts-node --project tsconfig.server.json server/index.ts",
+    "dev": "concurrently 'ts-node --project tsconfig.server.json server/index.ts' 'sleep 4; open http://localhost:3000'",
     "build:next": "next build",
-    "build:server": "tsc --project tsconfig.server.json",
-    "start": "next start",
+    "build:server": "rm -rf ./dist && tsc --project tsconfig.server.json",
+    "build": "concurrently 'npm run build:next' 'npm run build:server'",
+    "start": "node ./dist/index.js",
     "lint": "next lint",
     "test": "next test"
   },
