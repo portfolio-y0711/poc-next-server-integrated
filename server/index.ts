@@ -10,7 +10,10 @@ const port = process.env.PORT || 3000;
   try {
     await app.prepare();
     const server = express();
-    server.all("*", (req: Request, res: Response) => {
+    server.get('/api/create', async(req: Request, res: Response) => {
+      res.send("ok")
+    })
+    server.get("*", (req: Request, res: Response) => {
       return handle(req, res);
     });
     server.listen(port, (err?: any) => {
